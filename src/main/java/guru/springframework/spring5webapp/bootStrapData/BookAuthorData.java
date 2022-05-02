@@ -2,8 +2,10 @@ package guru.springframework.spring5webapp.bootStrapData;
 
 import guru.springframework.spring5webapp.models.Author;
 import guru.springframework.spring5webapp.models.Book;
+import guru.springframework.spring5webapp.models.Publisher;
 import guru.springframework.spring5webapp.repository.AuthorRepository;
 import guru.springframework.spring5webapp.repository.BookRepository;
+import guru.springframework.spring5webapp.repository.PublisherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +14,12 @@ public class BookAuthorData implements CommandLineRunner {
 
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
+    private  final PublisherRepository publisherRepository;
 
-    public BookAuthorData(AuthorRepository authorRepository, BookRepository bookRepository) {
+    public BookAuthorData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
+        this.publisherRepository = publisherRepository;
     }
 
     @Override
@@ -39,6 +43,12 @@ public class BookAuthorData implements CommandLineRunner {
 
         System.out.println("started in bootstarp");
         System.out.println("books count"+ bookRepository.count());
+
+        Publisher pub1= new Publisher("Penguin Publications","3rd Street","Bangalore","Karnataka",560100);
+
+        publisherRepository.save(pub1);
+
+        System.out.println("publisher count "+ publisherRepository.count());
 
     }
 }
