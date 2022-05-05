@@ -29,26 +29,31 @@ public class BookAuthorData implements CommandLineRunner {
         auth1.getBooks().add(book1);
         book1.getAuthors().add(auth1);
 
-        authorRepository.save(auth1);
-        bookRepository.save(book1);
-
-
         Author auth2 = new Author("Melvis","Presley");
         Book book2 = new Book("Art","IS1225");
         auth1.getBooks().add(book2);
         book1.getAuthors().add(auth2);
 
+        System.out.println("started in bootstarp");
+
+
+        authorRepository.save(auth1);
+        bookRepository.save(book1);
         authorRepository.save(auth2);
         bookRepository.save(book2);
 
-        System.out.println("started in bootstarp");
-        System.out.println("books count"+ bookRepository.count());
-
         Publisher pub1= new Publisher("Penguin Publications","3rd Street","Bangalore","Karnataka",560100);
+        book1.setPublisher(pub1);
+        book2.setPublisher(pub1);
+
+        pub1.getBooks().add(book1);
+        pub1.getBooks().add(book2);
+
 
         publisherRepository.save(pub1);
-
+        System.out.println("books count"+ bookRepository.count());
         System.out.println("publisher count "+ publisherRepository.count());
+        System.out.println("count of books for publisher "+pub1.getBooks().size());
 
     }
 }
